@@ -1,14 +1,14 @@
 
 import { faCheck, faInfoCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation,Link } from "react-router-dom";
 import axios from '../api/axios';
 import { useRef,useState,useEffect } from "react";
 
 
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const REGISTER_URL = 'register/';
 
@@ -185,6 +185,7 @@ const handleSubmit = async (e) => {
                         <input
                             type="password"
                             id="password"
+                            autoComplete="off"
                             onChange={(e) => setPwd(e.target.value)}
                             value={pwd}
                             required
@@ -197,8 +198,7 @@ const handleSubmit = async (e) => {
                             <FontAwesomeIcon icon={faInfoCircle} />
                             8 to 24 characters.<br />
                             Must include uppercase and lowercase letters, a number and a special character.<br />
-                            Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
-                        </p>
+                         </p>
 
 
                         <label htmlFor="confirm_pwd">
@@ -209,6 +209,7 @@ const handleSubmit = async (e) => {
                         <input
                             type="password"
                             id="confirm_pwd"
+                            autoComplete="off"
                             onChange={(e) => setMatchPwd(e.target.value)}
                             value={matchPwd}
                             required
@@ -228,7 +229,7 @@ const handleSubmit = async (e) => {
                         Already registered?<br />
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="#">Sign In</a>
+                            <Link to="/login">Sign In</Link>
                         </span>
                     </p>
                 </section>
